@@ -18,6 +18,7 @@
 		"npm": "3.5.3"
 	},
 	"dependencies": {
+		"forever": "latest",
 		"restify": "latest",
 		"bunyan": "latest",
 		"nconf": "latest",
@@ -35,7 +36,7 @@
 		"restify-validator": "latest",
 		"restify-cookies": "latest",
 		"nodemailer": "latest",
-		"stripe": "latest"
+		"stripe": "latest",
 	},
 	"devDependencies": {},
 	"scripts": {},

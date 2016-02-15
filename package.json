@@ -1,0 +1,43 @@
+{
+	"name": "income-perspectives-api",
+	"description": "restify server, bunyan logging, nconf configuration, lodash",
+	"version": "1.0.0",
+	"author": "Michael Baltic <geekstrap@live.com>",
+	"contributors": [],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/nerdstrap/income-perspectives-api.git"
+	},
+	"bugs": "http://github.com/nerdstrap/income-perspectives-api/issues",
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org"
+	},
+	"engines": {
+		"node": "5.5.0",
+		"npm": "3.5.3"
+	},
+	"dependencies": {
+		"restify": "latest",
+		"bunyan": "latest",
+		"nconf": "latest",
+		"lodash-contrib": "latest",
+		"mongoose": "latest",
+		"passport": "latest",
+		"passport-local": "latest",
+		"passport-twitter": "latest",
+		"passport-facebook": "latest",
+		"passport-github": "latest",
+		"passport-google-oauth": "latest",
+		"passport-linkedin": "latest",
+		"restify-jwt": "latest",
+		"jsonwebtoken": "latest",
+		"restify-validator": "latest",
+		"restify-cookies": "latest",
+		"nodemailer": "latest",
+		"stripe": "latest"
+	},
+	"devDependencies": {},
+	"scripts": {},
+	"main": "./server"
+}

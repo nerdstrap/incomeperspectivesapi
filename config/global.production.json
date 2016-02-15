@@ -1,0 +1,106 @@
+{
+	"app": {
+		"name": "incomeperspectivesapi"
+	},
+	"server": {
+		"port": 5000,
+		"name": "incomeperspectivesapi",
+		"defaultVersion": "1.0.0",
+		"acceptable": [
+			"application/json"
+		],
+		"throttleRate": 5,
+		"throttleBurst": 10,
+		"security": {
+			"secret": "ruffruffmoo",
+			"excludedPaths": [
+				"/",
+				"hello",
+				"login",
+				"register"
+			]
+		}
+	},
+	"session": {
+		"name": "connect.sid"
+	},
+	"emailServer": {
+		"fromAddress": "mbaltic@cardinalsolutions.com",
+		"service": "smtp-mail.outlook.com",
+		"auth": {
+			"user": "mbaltic@cardinalsolutions.com",
+			"password": ""
+		}
+	},
+	"logging": {
+		"name": "auditLogging"
+	},
+	"data": {
+		"defaultConnection": {
+			"server": "mongodb://heroku_8721nrk9:duloodolblskk1mmfg5afn2pp2@ds031822.mongolab.com:31822/heroku_8721nrk9"
+		}
+	},
+	"jwt": {
+		"secret": "ruffruffmoo",
+		"credentialsRequired": false
+	},
+	"strategies": {
+		"local": {
+			"enabled": true
+		},
+		"landingPage": "/",
+		"facebook": {
+			"clientID": "432217886986234",
+			"clientSecret": "3abd5f79ef3fe441452683c908405046",
+			"callbackURL": "http://localhost:1337/api/auth/facebook/callback",
+			"enabled": false
+		},
+		"twitter": {
+			"clientID": "sOcsYeIH7wMZSTt3sInP6u0aD",
+			"clientSecret": "scAowFMjw3B7JH5sSagzjHkT4qKIkfHqTYubZTKMVAc6YAimjr",
+			"callbackURL": "http://localhost:1337/api/auth/twitter/callback",
+			"enabled": false
+		},
+		"github": {
+			"clientID": "DEFAULT_APP_ID",
+			"clientSecret": "APP_SECRET",
+			"callbackURL": "http://localhost:1337/api/auth/github/callback",
+			"enabled": false
+		},
+		"google": {
+			"clientID": "756339539136-dd19pcakc8etik7kre4kardck523kfsu.apps.googleusercontent.com",
+			"clientSecret": "R4vdB4PHwfDlkL7XMYSdtjXF",
+			"callbackURL": "http://localhost:1337/api/auth/google/callback",
+			"enabled": false
+		},
+		"linkedin": {
+			"clientID": "DEFAULT_API_KEY",
+			"clientSecret": "SECRET_KEY",
+			"callbackURL": "http://localhost:1337/api/auth/linkedin/callback",
+			"enabled": false
+		}
+	},
+	"stripe": {
+		"secretKey": "sk_test_irbu4eJyKToXhQS3NIUo4b5p",
+		"publishableKey": "pk_test_8HnHFMoMWN83e6LPHc3RFxLm"
+	},
+	"cors": {
+		"credentials": false,
+		"origins": [
+			"*"
+		],
+		"headers": [
+			"Origin",
+			"Accept",
+			"Accept-Version",
+			"Content-Length",
+			"Content-MD5",
+			"Content-Type",
+			"Date",
+			"X-Api-Version",
+			"X-Response-Time",
+			"X-PINGOTHER",
+			"X-CSRF-Token,Authorization"
+		]
+	}
+}

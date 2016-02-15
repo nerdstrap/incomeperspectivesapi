@@ -36,7 +36,7 @@
 		"restify-validator": "latest",
 		"restify-cookies": "latest",
 		"nodemailer": "latest",
-		"stripe": "latest",
+		"stripe": "latest"
 	},
 	"devDependencies": {},
 	"scripts": {},

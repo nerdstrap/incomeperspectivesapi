@@ -48,6 +48,7 @@ var logger = bunyan.createLogger({
 var connectionString = nconf.get("data:defaultConnection:server");
 var database = mongoose.connect(connectionString);
 var User = require('./models/userModel');
+var StripeCustomer = require('./models/stripeCustomerModel');
 
 var server = restify.createServer({
 	name: nconf.get('server:name'),
@@ -126,6 +127,7 @@ var authRoutes = require('./middleware/auth/authRoutes')(server, auth, database,
 var helloRoutes = require('./middleware/hello/helloRoutes')(server, auth, database, passport);
 var abidRoutes = require('./middleware/abid/abidRoutes')(server, auth, database, passport);
 var ibidRoutes = require('./middleware/ibid/ibidRoutes')(server, auth, database, passport);
+var stripeRoutes = require('./middleware/stripe/stripeRoutes')(server, auth, database, passport);
 
 var port = process.env.PORT || nconf.get('server:port');
 server.listen(port, function (done) {

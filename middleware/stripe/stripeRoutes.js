@@ -6,7 +6,7 @@ var StripeCustomer = mongoose.model('StripeCustomer');
 
 module.exports = function (app, auth, database, passport) {
 
-	var  stripeClient = require('stripe')(app.nconf('stripe:secretKey'));
+	var  stripeClient = require('stripe')(app.nconf.get('stripe:secretKey'));
 
 	app.get('/api/stripe/customer', auth.requiresLogin, function (req, res, next) {
 
@@ -65,7 +65,7 @@ module.exports = function (app, auth, database, passport) {
 
 	});
 
-	app.delete('/api/stripe/customer', auth.requiresLogin, function (req, res, next) {
+	app.del('/api/stripe/customer', auth.requiresLogin, function (req, res, next) {
 		var _id = req.user._id;
 
 		StripeCustomer.findByUserId(_id, function (error, stripeCustomer) {

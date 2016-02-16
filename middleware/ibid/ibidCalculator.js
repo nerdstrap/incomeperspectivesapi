@@ -1,5 +1,5 @@
 'use strict';
-var _ = require('lodash-contrib');
+var _ = require('lodash');
 
 var getFutureValueWithGrowth = function (initialValue, rateOfReturn, growthRate, numberOfPeriods) {
 	return initialValue * ((Math.pow(1.0 + rateOfReturn, numberOfPeriods) - Math.pow(1.0 + growthRate, numberOfPeriods)) / (rateOfReturn - growthRate));
@@ -72,8 +72,8 @@ module.exports.baseline = function (currentAge, retirementAge, numberOfPeriods, 
 	var firstPayout = _.first(payouts);
 
 	var baselineSeriesData = {};
-	baselineSeriesData.categories = _.pluck(payouts, 'age');
-	baselineSeriesData.seriesA = _.pluck(payouts, 'cumulativeInvestmentIncome');
+	baselineSeriesData.categories = _.map(payouts, 'age');
+	baselineSeriesData.seriesA = _.map(payouts, 'cumulativeInvestmentIncome');
 
 	return {
 		grossRateOfReturn: grossRateOfReturn,
@@ -157,17 +157,14 @@ module.exports.breakEvenAnalysis = function (currentAge, retirementAge, numberOf
 	var firstPayout = _.first(payouts);
 
 	var breakEvenSeriesData = {};
-	breakEvenSeriesData.categories = _.pluck(payouts, 'age');
-	breakEvenSeriesData.seriesA = _.pluck(payouts, 'cumulativeInvestmentIncome');
-	breakEvenSeriesData.seriesB = _.pluck(payouts, 'cumulativeInsuranceProductIncome');
-	breakEvenSeriesData.seriesC = _.pluck(payouts, 'cumulativeIncomeDifferential');
+	breakEvenSeriesData.categories = _.map(payouts, 'age');
+	breakEvenSeriesData.seriesA = _.map(payouts, 'cumulativeInvestmentIncome');
+	breakEvenSeriesData.seriesB = _.map(payouts, 'cumulativeInsuranceProductIncome');
+	breakEvenSeriesData.seriesC = _.map(payouts, 'cumulativeIncomeDifferential');
 
-	var split1Payouts = _.splitAt(payouts, chunkSize);
-	var split2Payouts = _.splitAt(split1Payouts[1], chunkSize);
-
-	var gogoPayouts = split1Payouts[0];
-	var slowgoPayouts = split2Payouts[0];
-	var nogoPayouts = split2Payouts[1];
+	var gogoPayouts = _.slice(payouts, 0, chunkSize);
+	var slowgoPayouts = _.slice(payouts, chunkSize, chunkSize * 2);
+	var nogoPayouts = _.slice(payouts, chunkSize * 2, payouts.length);
 
 	var lastGogoPayout = _.last(gogoPayouts);
 	var lastSlowgoPayout = _.last(slowgoPayouts);
@@ -181,9 +178,9 @@ module.exports.breakEvenAnalysis = function (currentAge, retirementAge, numberOf
 
 	var periodicAnalysis = {};
 	periodicAnalysis.categories = [gogoCategoryLabel, slowgoCategoryLabel, nogoCategoryLabel];
-	periodicAnalysis.seriesA = _.pluck(periodicPayouts, 'cumulativeInvestmentIncome');
-	periodicAnalysis.seriesB = _.pluck(periodicPayouts, 'cumulativeInsuranceProductIncome');
-	periodicAnalysis.seriesC = _.pluck(periodicPayouts, 'cumulativeIncomeDifferential');
+	periodicAnalysis.seriesA = _.map(periodicPayouts, 'cumulativeInvestmentIncome');
+	periodicAnalysis.seriesB = _.map(periodicPayouts, 'cumulativeInsuranceProductIncome');
+	periodicAnalysis.seriesC = _.map(periodicPayouts, 'cumulativeIncomeDifferential');
 
 	var response = {
 		grossRateOfReturn: grossRateOfReturn,

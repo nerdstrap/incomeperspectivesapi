@@ -22,7 +22,7 @@
 		"restify": "latest",
 		"bunyan": "latest",
 		"nconf": "latest",
-		"lodash-contrib": "31001.1.0",
+		"lodash": "latest",
 		"mongoose": "latest",
 		"passport": "latest",
 		"passport-local": "latest",

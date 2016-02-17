@@ -17,8 +17,6 @@ module.exports = function (app, auth, database, passport) {
 		'version': '1.0.0'
 	}, controller.loggedIn);
 
-	//app.param('userId', controller.user);
-
 	app.get({
 		'name': 'me',
 		'path': '/me',

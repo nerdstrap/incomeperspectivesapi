@@ -21,5 +21,5 @@ module.exports = function (app, auth, database, passport) {
 		'name': 'abid_pdf',
 		'path': '/api/abid/pdf',
 		'version': '1.0.0'
-	}, controller.pdf);
+	}, auth.requiresLogin, controller.pdf);
 };

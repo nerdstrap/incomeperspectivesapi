@@ -16,4 +16,10 @@ module.exports = function (app, auth, database, passport) {
 		'path': '/api/ibid/breakEvenAnalysis',
 		'version': '1.0.0'
 	}, controller.breakEvenAnalysis);
+
+	app.get({
+		'name': 'ibid_pdf',
+		'path': '/api/ibid/pdf',
+		'version': '1.0.0'
+	}, auth.requiresLogin, controller.pdf);
 };

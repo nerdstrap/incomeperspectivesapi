@@ -29,7 +29,7 @@ module.exports = function (app, auth, database, passport) {
 			var payload = req.user;
 			var escaped = JSON.stringify(payload);
 			escaped = encodeURI(escaped);
-			var token = jwt.sign(escaped, jwtSecret, {expiresInMinutes: 60 * 5});
+			var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
 			res.cookie('token', token);
 			var destination = strategies.landingPage;
 			if (!req.cookies.redirect) {
@@ -63,7 +63,7 @@ module.exports = function (app, auth, database, passport) {
 			payload.redirect = req.body.redirect;
 			var escaped = JSON.stringify(payload);
 			escaped = encodeURI(escaped);
-			var token = jwt.sign(escaped, jwtSecret, {expiresInMinutes: 60 * 5});
+			var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
 			res.json({
 				token: token,
 				redirect: strategies.landingPage
@@ -132,7 +132,7 @@ module.exports = function (app, auth, database, passport) {
 						return next(err);
 					}
 
-					var token = jwt.sign(escaped, jwtSecret, {expiresInMinutes: 60 * 5});
+					var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
 					res.json({
 						token: token,
 						redirect: strategies.landingPage
@@ -170,7 +170,7 @@ module.exports = function (app, auth, database, passport) {
 				var payload = user;
 				var escaped = JSON.stringify(payload);
 				escaped = encodeURI(escaped);
-				var token = jwt.sign(escaped, jwtSecret, {expiresInMinutes: 60 * 5});
+				var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
 				res.json({token: token});
 
 			});

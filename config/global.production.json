@@ -105,8 +105,8 @@
 		]
 	},
 	"reports": {
-		"abidUrl":"http://incomeperspectives.cloudapp.net/api/dc-max/abid/report?",
-		"ibidUrl":"http://incomeperspectives.cloudapp.net/api/dc-max/ibid/report?",
+		"abidUrl":"http://incomeperspectives.herokuapp.com/api/abid/report?",
+		"ibidUrl":"http://incomeperspectives.herokuapp.com/api/ibid/report?",
 		"outputDirectory": "./tmp/"
 	}
 }

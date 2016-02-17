@@ -87,7 +87,8 @@
 	"cors": {
 		"credentials": false,
 		"origins": [
-			"https://incomeperspectives.herokuapp.com"
+			"https://incomeperspectives.herokuapp.com",
+			"*"
 		],
 		"headers": [
 			"Origin",

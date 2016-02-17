@@ -125,6 +125,8 @@ module.exports = function (app, auth, database, passport) {
 						res.send(404);
 					}
 
+					res.header('Content-disposition', 'inline; filename=' + filename);
+					res.header('Content-type', 'application/pdf');
 					fs.createReadStream(filename).pipe(res);
 				});
 			});

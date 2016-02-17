@@ -29,7 +29,7 @@ module.exports = function (app, auth, database, passport) {
 			var payload = req.user;
 			var escaped = JSON.stringify(payload);
 			escaped = encodeURI(escaped);
-			var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
+			var token = jwt.sign(escaped, jwtSecret, {expiresIn: 14400});
 			res.cookie('token', token);
 			var destination = strategies.landingPage;
 			if (!req.cookies.redirect) {
@@ -40,21 +40,25 @@ module.exports = function (app, auth, database, passport) {
 
 		signIn: function (req, res) {
 			if (req.isAuthenticated()) {
-				return res.send(401);
+				res.send(401);
+				return next();
 			}
-			res.send('200');
+			res.send(200);
+			return next();
 		},
 
-		session: function (req, res) {
+		session: function (req, res, next) {
 			res.redirect('/');
 		},
 
-		loggedIn: function (req, res) {
+		loggedIn: function (req, res, next) {
 			if (!req.isAuthenticated()) {
-				return res.send('0');
+				res.send('0');
+				return next();
 			}
 			auth.findUser(req.user._id, function (user) {
 				res.send(user ? user : '0');
+				return next();
 			});
 		},
 
@@ -63,16 +67,18 @@ module.exports = function (app, auth, database, passport) {
 			payload.redirect = req.body.redirect;
 			var escaped = JSON.stringify(payload);
 			escaped = encodeURI(escaped);
-			var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
+			var token = jwt.sign(escaped, jwtSecret, {expiresIn: 14400});
 			res.json({
 				token: token,
 				redirect: strategies.landingPage
 			});
+			return next();
 		},
 
-		logout: function (req, res) {
+		logout: function (req, res, next) {
 			req.logout();
 			res.send('200');
+			return next();
 		},
 
 		register: function (req, res, next) {
@@ -87,7 +93,8 @@ module.exports = function (app, auth, database, passport) {
 			req.assert('confirmPassword', 'Password and Confirm Password must match.').equals(req.body.password);
 			var errors = req.validationErrors();
 			if (errors) {
-				return res.status(400).send(errors);
+				res.send(400, errors);
+				return next();
 			}
 
 			user.roles = ['authenticated'];
@@ -97,7 +104,7 @@ module.exports = function (app, auth, database, passport) {
 						case 11000:
 						case 11001:
 						{
-							res.status(400).json([{
+							res.send(400, [{
 								msg: 'Username already taken.',
 								param: 'username'
 							}]);
@@ -116,11 +123,13 @@ module.exports = function (app, auth, database, passport) {
 										});
 									}
 								}
-								res.status(400).json(modelErrors);
+								res.send(400, modelErrors);
+								return next();
 							}
 						}
 					}
-					return res.status(400);
+					res.send(400);
+					return next();
 				}
 
 				var payload = user;
@@ -132,19 +141,20 @@ module.exports = function (app, auth, database, passport) {
 						return next(err);
 					}
 
-					var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
+					var token = jwt.sign(escaped, jwtSecret, {expiresIn: 14400});
 					res.json({
 						token: token,
 						redirect: strategies.landingPage
 					});
+					return next();
 				});
-				res.status(200);
 			});
 		},
 
-		me: function (req, res) {
+		me: function (req, res, next) {
 			if (!req.user || !req.user.hasOwnProperty('_id')) {
-				return res.send(304);
+				res.send(304);
+				return next();
 			}
 
 			User.findOne({
@@ -152,7 +162,8 @@ module.exports = function (app, auth, database, passport) {
 			}).exec(function (err, user) {
 
 				if (err || !user) {
-					return res.send(null);
+					res.send(null);
+					return next();
 				}
 
 				var dbUser = user.toJSON();
@@ -164,15 +175,16 @@ module.exports = function (app, auth, database, passport) {
 				var eq = _.isEqual(dbUser, req.user);
 				if (eq) {
 					req.user._id = id;
-					return res.json(req.user);
+					res.json(req.user);
+					return next();
 				}
 
 				var payload = user;
 				var escaped = JSON.stringify(payload);
 				escaped = encodeURI(escaped);
-				var token = jwt.sign(escaped, jwtSecret, {expiresIn: 86400});
+				var token = jwt.sign(escaped, jwtSecret, {expiresIn: 14400});
 				res.json({token: token});
-
+				return next();
 			});
 		},
 

@@ -107,6 +107,6 @@
 	"reports": {
 		"abidUrl":"http://incomeperspectives.cloudapp.net/api/dc-max/abid/report?",
 		"ibidUrl":"http://incomeperspectives.cloudapp.net/api/dc-max/ibid/report?",
-		"outputDirectory": "./temp/"
+		"outputDirectory": "./tmp/"
 	}
 }

@@ -14,14 +14,15 @@
 		"registry": "https://registry.npmjs.org"
 	},
 	"engines": {
-		"node": "5.5.0",
-		"npm": "3.6.0"
+		"node": "5.6.0",
+		"npm": "3.7.2"
 	},
 	"dependencies": {
 		"forever": "latest",
 		"restify": "latest",
 		"bunyan": "latest",
 		"nconf": "latest",
+		"phantom": "1.0.0",
 		"lodash": "latest",
 		"mongoose": "latest",
 		"passport": "latest",

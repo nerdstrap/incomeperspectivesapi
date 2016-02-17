@@ -103,5 +103,8 @@
 			"X-PINGOTHER",
 			"X-CSRF-Token,Authorization"
 		]
+	},
+	"phantom": {
+		"outputDirectory": "./temp"
 	}
 }

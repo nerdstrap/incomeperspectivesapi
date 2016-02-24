@@ -37,7 +37,7 @@
 	},
 	"data": {
 		"defaultConnection": {
-			"server": "mongodb://heroku_8721nrk9:duloodolblskk1mmfg5afn2pp2@ds031822.mongolab.com:31822/heroku_8721nrk9"
+			"server": "mongodb://heroku:lqrQaAYcC1Hx461HXrUDMtq9OjwJXz7cHoNVzvlsEjN7L28a4t5YcUZ9sWWPG9Ug7O1BigSPG1eW_y52j5ZXXA@candidate.65.mongolayer.com:10205,candidate.66.mongolayer.com:10173/app47502126"
 		}
 	},
 	"jwt": {

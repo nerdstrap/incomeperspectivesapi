@@ -88,6 +88,7 @@
 		"credentials": false,
 		"origins": [
 			"https://incomeperspectives.herokuapp.com",
+			"http://incomeperspectives.herokuapp.com",
 			"*"
 		],
 		"headers": [
